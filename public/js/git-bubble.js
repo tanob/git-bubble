@@ -12,17 +12,28 @@ function str_to_color(str) {
 
 Raphael.fn.commit = function (x, y, radius, author) {
   var color = str_to_color(author),
-      circle = this.circle(x, y, 10).animate({r: radius, fill: color, "opacity": 0.5, stroke: "none"}, 1000, "bounce"),
-      text = this.text(x, y - radius - 10, author).hide();
-  circle.node.onmouseover = function () {
-    circle.animate({r: radius * 1.5}, 100);
-    text.show();
+      radius_growth = radius * 1.5,
+      circle = this.circle(x, y, radius).animate({r: radius, fill: color, "opacity": 0.5, stroke: "none"}, 1000, "bounce"),
+      author_text = this.text(x, y - 10 - radius_growth, author).hide(),
+      commit_size = this.text(x, y, radius).hide()
+      elements = [circle, author_text, commit_size];
+
+  var onmouseover = function () {
+    circle.animate({r: radius_growth}, 100);
+    author_text.show();
+    commit_size.show();
   };
 
-  circle.node.onmouseout = function () {
+  var onmouseout = function () {
     circle.animate({r: radius}, 100);
-    text.hide();
+    author_text.hide();
+    commit_size.hide();
   };
+
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].node.onmouseover = onmouseover;
+    elements[i].node.onmouseout = onmouseout;
+  }
 };
 
 Raphael.fn.xy_axis = function (x, y, width, height, values) {
@@ -72,10 +83,10 @@ Raphael.fn.xy_axis = function (x, y, width, height, values) {
 window.onload = function () {
   var paper = Raphael("canvas", 800, 600);
   var values = {
-    "01/08": [{ratio: 0.6, size: 10, author: "vitorbaptista"}, {ratio: 0, size: 10, author: "bozo"}],
-    "02/08": [{ratio: 1, size: 10, author: "God"}, {ratio: 0.3, size: 10, author: "monkey"}],
-    "03/08": [{ratio: 0.5, size: 10, author: "God"}, {ratio: 0.2, size: 10, author: "monkey"}],
-    "04/08": [{ratio: 0.4, size: 10, author: "God"}, {ratio: 0.8, size: 10, author: "monkey"}],
+    "01/08": [{ratio: 0.6, size: 20, author: "vitorbaptista"}, {ratio: 0, size: 10, author: "bozo"}],
+    "02/08": [{ratio: 1, size: 10, author: "God"}, {ratio: 0.3, size: 45, author: "monkey"}],
+    "03/08": [{ratio: 0.5, size: 30, author: "God"}, {ratio: 0.2, size: 32, author: "monkey"}],
+    "04/08": [{ratio: 0.4, size: 50, author: "God"}, {ratio: 0.8, size: 42, author: "monkey"}],
   };
 
   paper.rect(0, 0, paper.width, paper.height, 10).attr({fill: "#fff", stroke: "none"});
