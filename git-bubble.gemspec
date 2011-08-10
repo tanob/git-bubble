@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Git::Bubble::VERSION
   s.authors     = ["Adriano Bonat"]
   s.email       = ["adrianob@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/tanob/git-bubble"
   s.summary     = "A tool to generate a bubble chart from the commits of a git repo."
   s.description = "A tool to generate a bubble chart from the commits of a git repo, based on a blog post from Jonathan Wolter (http://jawspeak.com/2011/07/16/improving-developers-enthusiasm-for-unit-tests-using-bubble-charts/)."
 
