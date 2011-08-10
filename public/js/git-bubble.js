@@ -49,7 +49,7 @@ Raphael.fn.xy_axis = function (x, y, width, height, values) {
   this.rect(x, y + height, width, thickness).attr({fill: axis_color, stroke: "none"});
 
   // Fills Y Axis
-  var y_values = ["100%", "80%", "60%", "40%", "20%", "0%"],
+  var y_values = ["100%", "", "80%", "", "60%", "", "40%", "", "20%", "", "0%"],
       num_y_values = y_values.length,
       y_offset = height / num_y_values,
       y_min = y + y_offset/2,
