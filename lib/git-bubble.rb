@@ -1,7 +1,3 @@
 require "git-bubble/version"
+require "git-bubble/app"
 
-module Git
-  module Bubble
-    # Your code goes here...
-  end
-end
