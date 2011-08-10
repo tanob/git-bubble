@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Adriano Bonat"]
   s.email       = ["adrianob@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = "A tool to generate a bubble chart from the commits of a git repo."
+  s.description = "A tool to generate a bubble chart from the commits of a git repo, based on a blog post from Jonathan Wolter (http://jawspeak.com/2011/07/16/improving-developers-enthusiasm-for-unit-tests-using-bubble-charts/)."
 
   s.rubyforge_project = "git-bubble"
 
