@@ -1,13 +1,10 @@
-require "launchy"
+require "vegas"
 require "git-bubble/server"
 
 module GitBubble
     class App
         def self.watch_repo(repo_path)
-            server_thread = Thread.new { Server.run! }
-            sleep(1)
-            Launchy.open("http://0.0.0.0:4567/")
-            server_thread.join
+            Vegas::Runner.new(Server, 'git-bubble')
         end
     end
 end

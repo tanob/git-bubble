@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
-  s.add_runtime_dependency "launchy",   "~> 2.0.5"
   s.add_runtime_dependency "sinatra",   "~> 1.2.6"
   s.add_runtime_dependency "haml",      "~> 3.1.2"
+  s.add_runtime_dependency "vegas",     "~> 0.1.8"
 end
