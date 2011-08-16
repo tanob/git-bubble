@@ -24,5 +24,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "grit",      "~> 2.4.1"
 
   s.add_development_dependency "rake"
+  s.add_development_dependency "jasmine"
   s.add_development_dependency "rspec", "~> 2.6.0"
 end
