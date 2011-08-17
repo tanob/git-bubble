@@ -7,7 +7,8 @@ describe("plane", function () {
   canvas.width = 500;
 
   beforeEach(function () {
-      plane = newPlane(canvas);
+    canvas.reset();
+    plane = newPlane(canvas);
   });
 
   it("holds the canvas it was initialized with", function () {

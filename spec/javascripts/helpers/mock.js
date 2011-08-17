@@ -6,5 +6,19 @@ function mock() {
     mock[method_name] = jasmine.createSpy(method_name);
   }
 
+  function reset() {
+    var methods = Object.keys(this);
+
+    for (i in methods) {
+      var method = this[methods[i]];
+
+      if (method.isSpy) {
+        method.reset();
+      }
+    }
+  }
+
+  mock.reset = reset;
+
   return mock;
 }
