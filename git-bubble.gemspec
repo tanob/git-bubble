@@ -22,8 +22,10 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "haml",      "~> 3.1.2"
   s.add_runtime_dependency "vegas",     "~> 0.1.8"
   s.add_runtime_dependency "grit",      "~> 2.4.1"
+  s.add_runtime_dependency "json",      "~> 1.5.3"
 
   s.add_development_dependency "rake"
   s.add_development_dependency "jasmine"
   s.add_development_dependency "rspec", "~> 2.6.0"
+  s.add_development_dependency "rack-test", "~> 0.6.1"
 end

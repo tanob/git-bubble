@@ -1,5 +1,6 @@
 require "sinatra/base"
 require "haml"
+require "json"
 
 module GitBubble
     class Server < Sinatra::Base
@@ -13,6 +14,21 @@ module GitBubble
 
         get "/" do
             haml :index
+        end
+
+        get "/commits" do
+            commits = settings.repo.commits(max_count = false).reduce({}) {|hash, commit| add_to hash, commit }
+            commits.to_json
+        end
+
+        def add_to(hash, commit)
+            hash[commit.sha] = {
+                :date => commit.date.strftime('%Y/%m/%d %T %z'),
+                :author => commit.author,
+                :ratio => 0,
+                :size => commit.stats.additions,
+            }
+            hash
         end
     end
 end
