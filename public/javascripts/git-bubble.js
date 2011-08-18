@@ -110,17 +110,12 @@ Raphael.fn.xy_axis = function (x, y, width, height, commits) {
 
 window.onload = function () {
   var paper = Raphael("canvas", 800, 600);
-  var commits = {
-    "hash-1": {date: "August 8, 2011 00:00:00", ratio: 0.6, size: 20, author: "vitorbaptista"},
-    "hash-2": {date: "August 8, 2011 11:33:00", ratio: 0, size: 10, author: "bozo"},
-    "hash-3": {date: "August 8, 2011 21:02:00", ratio: 1, size: 10, author: "God"},
-    "hash-4": {date: "August 9, 2011 14:54:00", ratio: 0.3, size: 45, author: "monkey"},
-    "hash-5": {date: "August 9, 2011 19:00:00", ratio: 0.5, size: 30, author: "God"},
-    "hash-6": {date: "August 10, 2011 03:00:00", ratio: 0.2, size: 32, author: "monkey"},
-    "hash-7": {date: "August 10, 2011 07:30:00", ratio: 0.4, size: 50, author: "God"},
-    "hash-8": {date: "August 10, 2011 23:53:00", ratio: 0.8, size: 42, author: "monkey"},
-  };
-
   paper.rect(0, 0, paper.width, paper.height, 10).attr({fill: "#fff", stroke: "none"});
-  paper.xy_axis(10, 10, 800, 600, commits);
+
+  $.getJSON('/commits', function(paper) {
+      return function(commits) {
+        paper.xy_axis(10, 10, 800, 600, commits);
+      }
+  }(paper));
 };
+
