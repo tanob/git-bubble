@@ -25,11 +25,12 @@ module GitBubble
             hash[commit.sha] = {
                 :date => commit.date.strftime('%Y/%m/%d %T %z'),
                 :author => commit.author,
-                :ratio => 0,
+                :ratio => Coverage.ratio_for(commit),
                 :size => commit.stats.additions,
             }
             hash
         end
+        private :add_to
     end
 end
 

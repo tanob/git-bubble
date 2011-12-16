@@ -16,12 +16,18 @@ describe GitBubble::Server do
 
     it 'should return last commits from repo' do
         @repo.should_receive(:commits).with(max_count = false).and_return(last_commits)
+        last_commits.each do |commit|
+            GitBubble::Coverage.should_receive(:ratio_for).with(commit).and_return("calculated by coverage")
+        end
+
         get '/commits'
+
         JSON.parse(last_response.body).should == JSON.parse(info_from(last_commits).to_json)
     end
 
     def last_commits
-        [ commit('first_sha1', 'author 1', Time.new(2011,11,2,13,25,0, "-03:00"), 'first commit', 8),
+        @last_commits ||= [
+          commit('first_sha1', 'author 1', Time.new(2011,11,2,13,25,0, "-03:00"), 'first commit', 8),
           commit('second_sha1', 'author 2', Time.new(2011,11,1,14,0,0, "-05:00"), 'second commit', 71),
         ]
     end
@@ -36,7 +42,7 @@ describe GitBubble::Server do
         commits.reduce({}) do |hash, commit|
             hash[commit.sha] = {
                 :date => commit.date.strftime('%Y/%m/%d %T %z'),
-                :ratio => 0,
+                :ratio => "calculated by coverage",
                 :size => commit.stats.additions,
                 :author => commit.author
             }
